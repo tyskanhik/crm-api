@@ -1,5 +1,5 @@
 import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, Patch, Post, Query } from "@nestjs/common";
-import { ApiOperation, ApiParam, ApiQuery, ApiResponse, ApiTags } from "@nestjs/swagger";
+import { ApiOperation, ApiParam, ApiQuery, ApiResponse, ApiTags, ApiBody } from "@nestjs/swagger";
 import { TicketsService } from "./services/tickets.service";
 import { TicketStatus } from "./enums/ticket-status.enum";
 import { Ticket } from "./entities/ticket.entity";
@@ -44,6 +44,11 @@ export class TicketsController {
   @Patch(':id')
   @ApiOperation({ summary: 'Обновить заявку' })
   @ApiParam({ name: 'id', description: 'ID заявки' })
+  @ApiBody({
+  type: CreateTicketDto,
+  required: false,
+  description: 'Поля для обновления (все опциональны)'
+  })
   @ApiResponse({ status: 200, description: 'Заявка обновлена', type: Ticket })
   @ApiResponse({ status: 404, description: 'Заявка не найдена' })
   async updateTicket(

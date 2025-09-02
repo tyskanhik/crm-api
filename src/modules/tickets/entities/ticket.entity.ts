@@ -1,8 +1,9 @@
 import { ApiProperty } from "@nestjs/swagger";
 import { TicketPriority } from "../enums/ticket-priority.enum";
 import { TicketStatus } from "../enums/ticket-status.enum";
-import { Column, CreateDateColumn, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { Entity, Column, CreateDateColumn, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 
+@Entity('tickets')
 export class Ticket {
   @ApiProperty()
   @PrimaryGeneratedColumn('uuid')
