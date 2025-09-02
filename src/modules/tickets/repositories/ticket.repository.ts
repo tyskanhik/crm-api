@@ -4,10 +4,11 @@ import { Ticket } from "../entities/ticket.entity";
 import { Repository } from "typeorm";
 import { TicketStatus } from "../enums/ticket-status.enum";
 import { CreateTicketDto } from "../dto/create-ticket.dto";
+import { ITicketRepository } from "./repository.interface";
 
 
 @Injectable()
-export class TicketRepository {
+export class TicketRepository implements ITicketRepository {
   constructor(
     @InjectRepository(Ticket)
     private readonly ticketRepository: Repository<Ticket>
