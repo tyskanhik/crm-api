@@ -1,7 +1,8 @@
 import { ApiProperty } from "@nestjs/swagger";
 import { TicketPriority } from "../enums/ticket-priority.enum";
 import { TicketStatus } from "../enums/ticket-status.enum";
-import { Entity, Column, CreateDateColumn, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { Entity, Column, CreateDateColumn, PrimaryGeneratedColumn, UpdateDateColumn, OneToMany } from "typeorm";
+import { Attachment } from "src/modules/attachments/entities/attachment.entity";
 
 @Entity('tickets')
 export class Ticket {
@@ -40,6 +41,9 @@ export class Ticket {
   @ApiProperty()
   @UpdateDateColumn()
   updatedAt: Date;
+
+  @OneToMany(() => Attachment, attachment => attachment.ticket)
+  attachments: Attachment[];
 
   constructor(partial: Partial<Ticket>) {
     Object.assign(this, partial);

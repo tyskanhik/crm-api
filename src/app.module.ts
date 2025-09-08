@@ -5,6 +5,7 @@ import { DatabaseModule } from './shared/database/database.module';
 import { TicketsModule } from './modules/tickets/tickets.module';
 import minioConfig from './config/minio.config';
 import { StorageModule } from './shared/storage/storage.module';
+import { AttachmentsModule } from './modules/attachments/attachments.module';
 
 @Module({
   imports: [
@@ -15,6 +16,7 @@ import { StorageModule } from './shared/storage/storage.module';
     DatabaseModule,
     StorageModule,
     TicketsModule,
+    AttachmentsModule,
   ],
 })
 export class AppModule {}

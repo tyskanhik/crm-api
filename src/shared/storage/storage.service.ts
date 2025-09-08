@@ -1,6 +1,8 @@
 import { Injectable, OnModuleInit } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
+import { readFileSync, unlinkSync } from 'fs';
 import * as Minio from 'minio';
+import { join } from 'path';
 
 @Injectable()
 export class StorageService implements OnModuleInit {
@@ -35,18 +37,20 @@ export class StorageService implements OnModuleInit {
 
   async uploadFile(file: Express.Multer.File): Promise<string> {
     const objectName = `${Date.now()}-${file.originalname}`;
+    const fileBuffer = readFileSync(join(file.destination, file.filename));
     
     await this.minioClient.putObject(
       this.bucketName,
       objectName,
-      file.buffer,
+      fileBuffer,
       file.size,
       {
         'Content-Type': file.mimetype,
         'Original-Name': file.originalname,
       }
     );
-
+    
+    unlinkSync(join(file.destination, file.filename));
     return objectName;
   }
 
