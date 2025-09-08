@@ -40,6 +40,9 @@ export class Attachment {
   @JoinColumn({ name: 'ticketId' })
   ticket: Ticket;
 
+  @ApiProperty({ description: 'Presigned URL for file access' })
+  url?: string;
+
   constructor(partial: Partial<Attachment>) {
     Object.assign(this, partial);
   }
