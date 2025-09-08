@@ -15,6 +15,7 @@ import { TicketRepository } from "./repositories/ticket.repository";
       provide: 'ITicketRepository',
       useClass: TicketRepository
     }
-  ]
+  ],
+  exports: [TicketsService],
 })
 export class TicketsModule {}
