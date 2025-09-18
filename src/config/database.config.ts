@@ -8,6 +8,6 @@ export default registerAs('database', () => ({
   password: process.env.DB_PASSWORD || 'password',
   database: process.env.DB_NAME || 'crm_api',
   entities: [__dirname + '/../**/*.entity{.ts,.js}'],
-  synchronize: process.env.NODE_ENV !== 'production',
-  logging: process.env.NODE_ENV !== 'production',
+  synchronize: true,
+  logging: true,
 }))
