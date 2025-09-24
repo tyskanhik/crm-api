@@ -86,7 +86,6 @@ export class AttachmentsController {
   }
 
   @Delete(':fileId')
-  @HttpCode(HttpStatus.NO_CONTENT)
   @ApiOperation({ summary: 'Удалить файл' })
   @ApiParam({ name: 'ticketId', description: 'ID заявки' })
   @ApiParam({ name: 'fileId', description: 'ID файла' })

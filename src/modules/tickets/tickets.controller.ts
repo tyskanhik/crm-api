@@ -59,7 +59,6 @@ export class TicketsController {
   }
 
   @Delete(':id')
-  @HttpCode(HttpStatus.NO_CONTENT)
   @ApiOperation({ summary: 'Удалить заявку' })
   @ApiParam({ name: 'id', description: 'ID заявки' })
   @ApiResponse({ status: 204, description: 'Заявка удалена' })
